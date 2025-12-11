@@ -1,0 +1,1175 @@
+/* Minimalist Design - White, Blue, Black */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Notion-inspired color palette */
+    --primary: #2383E2;
+    --primary-dark: #1a6dc4;
+    --black: #37352F;
+    --gray: #787774;
+    --light-gray: #E9E9E7;
+    --cream: #FDFCFB;
+    --white: #FFFFFF;
+    --border: rgba(55, 53, 47, 0.09);
+    --shadow: rgba(15, 15, 15, 0.1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', sans-serif;
+    line-height: 1.65;
+    color: var(--black);
+    background: var(--cream);
+    overflow-x: hidden;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Navigation - Floating Circular Style */
+.navbar {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: 90%;
+    z-index: 9999;
+    padding: 0;
+    isolation: isolate;
+}
+
+.nav-container {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 60px;
+    padding: 10px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    box-shadow: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-container:hover {
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.logo {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--black);
+    letter-spacing: -0.3px;
+    padding: 8px 16px;
+    white-space: nowrap;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--gray);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 40px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+}
+
+.nav-menu a:hover {
+    background: var(--light-gray);
+    color: var(--black);
+}
+
+.nav-menu a.active {
+    background: var(--black);
+    color: var(--white);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 22px;
+    height: 1px;
+    background: var(--black);
+    transition: 0.3s;
+}
+
+/* Hero Section - Fullscreen */
+.hero {
+    position: relative;
+    background: var(--cream);
+}
+
+/* Apple-Style Scroll Animation - Fullscreen */
+.scroll-animation-container {
+    position: relative;
+    height: 400vh; /* Controls scroll duration - longer = slower transitions */
+}
+
+.scroll-animation-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Fullscreen Video Scrubbing */
+.scroll-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Text Overlays */
+.text-overlays {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 600px;
+    padding: 40px;
+}
+
+.text-overlay.active {
+    opacity: 1;
+}
+
+/* Right side text */
+.text-overlay.text-right {
+    right: 80px;
+    text-align: right;
+    transform: translateY(-50%) translateX(50px);
+}
+
+.text-overlay.text-right.active {
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Left side text */
+.text-overlay.text-left {
+    left: 80px;
+    text-align: left;
+    transform: translateY(-50%) translateX(-50px);
+}
+
+.text-overlay.text-left.active {
+    transform: translateY(-50%) translateX(0);
+}
+
+.text-overlay h2 {
+    font-size: 52px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    letter-spacing: -2px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.text-overlay p {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 400;
+    line-height: 1.6;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Banner - Gradient with Infinite Scroll */
+.logo-banner {
+    padding: 120px 0 80px;
+    background:
+        linear-gradient(to bottom,
+            transparent 0%,
+            transparent 15%,
+            rgba(35, 131, 226, 0.05) 100%
+        ),
+        linear-gradient(135deg,
+            rgba(35, 131, 226, 0.05) 0%,
+            rgba(35, 131, 226, 0.02) 50%,
+            rgba(35, 131, 226, 0.05) 100%
+        );
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+}
+
+.logo-banner::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 150px;
+    background: linear-gradient(to right,
+        var(--cream) 0%,
+        rgba(253, 252, 251, 0.8) 30%,
+        transparent 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+.logo-banner::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 150px;
+    background: linear-gradient(to left,
+        var(--cream) 0%,
+        rgba(253, 252, 251, 0.8) 30%,
+        transparent 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+.logo-banner-content {
+    text-align: center;
+}
+
+.logo-banner-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gray);
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+.logo-marquee {
+    overflow: hidden;
+    position: relative;
+}
+
+.logo-track {
+    display: flex;
+    gap: 60px;
+    animation: marquee 30s linear infinite;
+    width: fit-content;
+}
+
+.logo-track:hover {
+    animation-play-state: paused;
+}
+
+.logo-item {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--black);
+    white-space: nowrap;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    letter-spacing: -0.5px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.logo-item:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    background: var(--white);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Split Screen Hero - Progressive Text */
+.hero-split {
+    min-height: auto;
+}
+
+.split-scroll-container {
+    position: relative;
+    height: 500vh;
+}
+
+.split-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+}
+
+.text-side {
+    background: var(--cream);
+    padding: 120px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.text-content {
+    width: 100%;
+    text-align: left;
+}
+
+.text-block.bold-statement h2 .highlight {
+    color: #0058F7;
+}
+
+.text-block {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.text-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.text-block.bold-statement h2 {
+    font-size: 80px;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 1.1;
+    letter-spacing: -3px;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+}
+
+/* Animated Strikethrough */
+.text-block.bold-statement.strikethrough h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 8px;
+    background: #FF0000;
+    transform: translateY(-50%);
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.3s;
+}
+
+.text-block.bold-statement.strikethrough.visible h2::after {
+    width: 100%;
+}
+
+.text-block.final-block {
+    margin-top: 80px;
+}
+
+.text-block.final-block .cta-button {
+    display: inline-block;
+    padding: 18px 48px;
+    background: #0058F7;
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.text-block.final-block .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0, 88, 247, 0.4);
+    background: #0047d1;
+}
+
+.video-side {
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-video-split {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+}
+
+/* About Section - Notion Style */
+.about {
+    padding: 120px 0;
+    background: var(--cream);
+}
+
+.about-text {
+    text-align: center;
+    font-size: 28px;
+    color: var(--black);
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+}
+
+/* Latest Posts - Notion Style */
+.latest-posts {
+    padding: 100px 0 150px;
+    background: var(--white);
+}
+
+.latest-posts h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gray);
+    margin-bottom: 48px;
+    font-weight: 600;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.post-card {
+    background: var(--cream);
+    padding: 32px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--shadow);
+    border-color: rgba(55, 53, 47, 0.16);
+}
+
+.post-card h3 {
+    font-size: 18px;
+    color: var(--black);
+    margin-bottom: 8px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+}
+
+.post-card p {
+    color: var(--gray);
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.read-more {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.read-more:hover {
+    color: var(--primary-dark);
+}
+
+/* Blog Page Styles - Notion Style */
+.blog-header {
+    padding: 160px 0 80px;
+    background: var(--cream);
+    text-align: center;
+}
+
+.blog-header h1 {
+    font-size: 56px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    color: var(--black);
+}
+
+.blog-header p {
+    font-size: 20px;
+    color: var(--gray);
+    font-weight: 400;
+}
+
+.blog-filters {
+    padding: 24px 0;
+    background: rgba(253, 252, 251, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 61px;
+    z-index: 100;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 6px 16px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--gray);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-btn:hover {
+    background: var(--cream);
+    border-color: rgba(55, 53, 47, 0.16);
+}
+
+.filter-btn.active {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+}
+
+.blog-section {
+    padding: 60px 0 100px;
+    background: var(--cream);
+}
+
+.blog-grid {
+    display: grid;
+    gap: 24px;
+}
+
+.blog-post-card {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 32px;
+    align-items: start;
+    padding: 32px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.blog-post-card:hover {
+    box-shadow: 0 8px 24px var(--shadow);
+    border-color: rgba(55, 53, 47, 0.16);
+}
+
+.blog-post-card:last-child {
+    margin-bottom: 0;
+}
+
+.post-image-large {
+    width: 100%;
+    height: 160px;
+    background: var(--light-gray);
+    border-radius: 8px;
+}
+
+.post-content-full {
+    padding: 0;
+}
+
+.post-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.post-category {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--light-gray);
+    color: var(--black);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.post-date {
+    color: var(--gray);
+    font-size: 13px;
+}
+
+.post-content-full h2 {
+    font-size: 24px;
+    color: var(--black);
+    margin-bottom: 12px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+}
+
+.post-content-full p {
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+/* Newsletter - Notion Style */
+.newsletter {
+    padding: 120px 0;
+    background: var(--black);
+    text-align: center;
+    color: var(--white);
+}
+
+.newsletter h2 {
+    font-size: 40px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+}
+
+.newsletter p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--white);
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.newsletter-form input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.newsletter-form input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-form button {
+    padding: 12px 24px;
+    background: var(--white);
+    color: var(--black);
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.newsletter-form button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Contact Page - Notion Style */
+.contact-header {
+    padding: 160px 0 80px;
+    background: var(--cream);
+    text-align: center;
+}
+
+.contact-header h1 {
+    font-size: 56px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    color: var(--black);
+}
+
+.contact-header p {
+    font-size: 20px;
+    color: var(--gray);
+}
+
+.contact-section {
+    padding: 80px 0 120px;
+    background: var(--cream);
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+}
+
+.contact-form-container h2,
+.contact-info h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gray);
+    margin-bottom: 32px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--black);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    background: var(--white);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: rgba(55, 53, 47, 0.3);
+    box-shadow: 0 0 0 3px rgba(35, 131, 226, 0.1);
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 12px;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.contact-form button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.form-message {
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 4px;
+    display: none;
+    font-size: 14px;
+}
+
+.form-message.success {
+    background: #f0f9ff;
+    color: #0c4a6e;
+    display: block;
+}
+
+.form-message.error {
+    background: #fef2f2;
+    color: #991b1b;
+    display: block;
+}
+
+.info-card {
+    margin-bottom: 32px;
+    padding: 24px;
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.info-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.info-card h3 {
+    color: var(--black);
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.info-card p {
+    color: var(--gray);
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.info-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.info-link:hover {
+    color: var(--primary-dark);
+}
+
+.response-time {
+    padding: 24px;
+    background: var(--white);
+    border-radius: 8px;
+    margin-top: 32px;
+    border: 1px solid var(--border);
+}
+
+.response-time h3 {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.response-time p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gray);
+}
+
+/* FAQ Section - Notion Style */
+.faq-section {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.faq-section h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gray);
+    margin-bottom: 48px;
+    font-weight: 600;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+}
+
+.faq-item {
+    padding: 24px;
+    background: var(--cream);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.faq-item h3 {
+    color: var(--black);
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.faq-item p {
+    color: var(--gray);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* Footer - Notion Style */
+.footer {
+    padding: 80px 0;
+    background: var(--cream);
+    border-top: 1px solid var(--border);
+}
+
+.footer .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.social-links a:hover {
+    background: var(--white);
+    color: var(--black);
+    box-shadow: 0 1px 3px var(--shadow);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 24px;
+    }
+
+    .navbar {
+        top: 16px;
+        left: 16px;
+        right: 16px;
+        transform: none;
+        width: auto;
+    }
+
+    .nav-container {
+        padding: 12px 16px;
+        border-radius: 50px;
+        justify-content: space-between;
+    }
+
+    .hamburger {
+        display: flex;
+        padding: 4px;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        top: 80px;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: saturate(180%) blur(20px);
+        text-align: center;
+        transition: all 0.3s ease;
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        padding: 16px;
+        gap: 8px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        box-shadow:
+            0 4px 12px rgba(15, 15, 15, 0.08),
+            0 12px 32px rgba(15, 15, 15, 0.12);
+    }
+
+    .nav-menu.active {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+    }
+
+    .nav-menu a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .scroll-animation-container {
+        height: 350vh;
+    }
+
+    /* Split screen responsive */
+    .split-sticky {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 50vh;
+    }
+
+    .text-side {
+        padding: 100px 32px 60px;
+        order: 1;
+    }
+
+    .video-side {
+        order: 2;
+        height: 50vh;
+    }
+
+    .text-block.bold-statement h2 {
+        font-size: 48px;
+        letter-spacing: -2px;
+    }
+
+    .text-block.bold-statement.strikethrough h2::after {
+        height: 6px;
+    }
+
+    .text-block.final-block .cta-button {
+        padding: 14px 32px;
+        font-size: 16px;
+    }
+
+    .text-overlay.text-right {
+        right: 24px;
+        max-width: calc(100% - 48px);
+    }
+
+    .text-overlay.text-left {
+        left: 24px;
+        max-width: calc(100% - 48px);
+    }
+
+    .text-overlay {
+        padding: 24px;
+    }
+
+    .text-overlay h2 {
+        font-size: 36px;
+        letter-spacing: -1.5px;
+    }
+
+    .text-overlay p {
+        font-size: 16px;
+    }
+
+    .logo-banner {
+        padding: 60px 0;
+    }
+
+    .logo-banner-label {
+        margin-bottom: 32px;
+    }
+
+    .logo-item {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+
+    .logo-track {
+        gap: 40px;
+    }
+
+    .about {
+        padding: 80px 0;
+    }
+
+    .about-text {
+        font-size: 20px;
+    }
+
+    .latest-posts {
+        padding: 80px 0;
+    }
+
+    .posts-grid {
+        gap: 50px;
+    }
+
+    .blog-post-card {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .footer .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-overlay h2 {
+        font-size: 28px;
+    }
+
+    .text-overlay p {
+        font-size: 14px;
+    }
+
+    .about-text {
+        font-size: 18px;
+    }
+
+    .blog-header h1,
+    .contact-header h1 {
+        font-size: 36px;
+    }
+}

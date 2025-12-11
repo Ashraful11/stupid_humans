@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Stupid Humans Tech</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Stupid Humans Tech</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="container">
+            <h1>Automation Insights</h1>
+            <p>Tutorials, tips, and real-world examples to simplify your digital marketing workflow</p>
+        </div>
+    </section>
+
+    <!-- Blog Categories Filter -->
+    <section class="blog-filters">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Posts</button>
+                <button class="filter-btn" data-filter="n8n">n8n</button>
+                <button class="filter-btn" data-filter="apps-script">Google Apps Script</button>
+                <button class="filter-btn" data-filter="automation">Automation</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-grid">
+                <!-- Post 1 -->
+                <article class="blog-post-card" data-category="n8n">
+                    <div class="post-image-large"></div>
+                    <div class="post-content-full">
+                        <div class="post-meta">
+                            <span class="post-category">n8n</span>
+                            <span class="post-date">December 10, 2025</span>
+                        </div>
+                        <h2>Getting Started with n8n: A Beginner's Guide</h2>
+                        <p>Learn how to set up your first automation workflow in minutes. n8n is a powerful, fair-code automation tool that lets you connect your apps and services without writing code. In this comprehensive guide, I'll walk you through the basics...</p>
+                        <a href="#" class="read-more">Read Full Article →</a>
+                    </div>
+                </article>
+
+                <!-- Post 2 -->
+                <article class="blog-post-card" data-category="apps-script">
+                    <div class="post-image-large"></div>
+                    <div class="post-content-full">
+                        <div class="post-meta">
+                            <span class="post-category">Google Apps Script</span>
+                            <span class="post-date">December 8, 2025</span>
+                        </div>
+                        <h2>Automate Your Email Reports with Apps Script</h2>
+                        <p>Create automated email reports directly from Google Sheets. This tutorial shows you how to use Google Apps Script to pull data from your spreadsheets and send beautifully formatted email reports to your team...</p>
+                        <a href="#" class="read-more">Read Full Article →</a>
+                    </div>
+                </article>
+
+                <!-- Post 3 -->
+                <article class="blog-post-card" data-category="automation">
+                    <div class="post-image-large"></div>
+                    <div class="post-content-full">
+                        <div class="post-meta">
+                            <span class="post-category">Automation</span>
+                            <span class="post-date">December 5, 2025</span>
+                        </div>
+                        <h2>5 Marketing Tasks You Should Automate Today</h2>
+                        <p>Discover the low-hanging fruit in marketing automation. These five tasks can save you hours every week and are surprisingly easy to automate. From social media posting to lead nurturing...</p>
+                        <a href="#" class="read-more">Read Full Article →</a>
+                    </div>
+                </article>
+
+                <!-- Post 4 -->
+                <article class="blog-post-card" data-category="n8n">
+                    <div class="post-image-large"></div>
+                    <div class="post-content-full">
+                        <div class="post-meta">
+                            <span class="post-category">n8n</span>
+                            <span class="post-date">December 3, 2025</span>
+                        </div>
+                        <h2>Building a Lead Capture Workflow with n8n</h2>
+                        <p>Transform how you handle leads with this automated workflow. Learn how to connect your forms, CRM, and notification systems to create a seamless lead capture process that never misses an opportunity...</p>
+                        <a href="#" class="read-more">Read Full Article →</a>
+                    </div>
+                </article>
+
+                <!-- Post 5 -->
+                <article class="blog-post-card" data-category="apps-script">
+                    <div class="post-image-large"></div>
+                    <div class="post-content-full">
+                        <div class="post-meta">
+                            <span class="post-category">Google Apps Script</span>
+                            <span class="post-date">November 30, 2025</span>
+                        </div>
+                        <h2>Creating Custom Google Sheets Functions</h2>
+                        <p>Extend Google Sheets with your own custom functions using Apps Script. This guide covers everything from basic function syntax to advanced features like pulling data from external APIs...</p>
+                        <a href="#" class="read-more">Read Full Article →</a>
+                    </div>
+                </article>
+
+                <!-- Post 6 -->
+                <article class="blog-post-card" data-category="marketing">
+                    <div class="post-image-large"></div>
+                    <div class="post-content-full">
+                        <div class="post-meta">
+                            <span class="post-category">Marketing</span>
+                            <span class="post-date">November 28, 2025</span>
+                        </div>
+                        <h2>The Complete Guide to Marketing Automation ROI</h2>
+                        <p>Measure the real impact of your automation efforts. Learn how to calculate ROI, track key metrics, and demonstrate the value of automation to stakeholders. Includes free templates and calculators...</p>
+                        <a href="#" class="read-more">Read Full Article →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Get Automation Tips Delivered</h2>
+            <p>Join the community and receive weekly tutorials and insights</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="cta-button">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Automation Blog. Making digital marketing simple through automation.</p>
+            <div class="social-links">
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
