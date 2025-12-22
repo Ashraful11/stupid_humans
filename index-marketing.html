@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stupid Humans Tech | Free Marketing Automation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Stupid Humans Tech</div>
+            <ul class="nav-menu">
+                <li><a href="index-marketing.html" class="active">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Split Screen with Progressive Text -->
+    <section class="hero hero-split">
+        <div class="split-scroll-container">
+            <div class="split-sticky">
+                <!-- Left Side - Progressive Text -->
+                <div class="text-side">
+                    <div class="text-content">
+                        <!-- Progressive bold statements -->
+                        <div class="text-block bold-statement" data-progress="0">
+                            <h2>Be <span class="highlight">Stupid</span></h2>
+                        </div>
+
+                        <div class="text-block bold-statement" data-progress="0.40">
+                            <h2>Work <span class="highlight">Smartly</span></h2>
+                        </div>
+
+                        <div class="text-block bold-statement strikethrough" data-progress="0.75">
+                            <h2>Not Hardly</h2>
+                        </div>
+
+                        <div class="text-block final-block" data-progress="0.95">
+                            <a href="#automations" class="cta-button">Get Free Automations</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side - Video -->
+                <div class="video-side">
+                    <video id="scroll-video-split" class="scroll-video-split" preload="auto" muted playsinline>
+                        <source src="assets/video/chimp_evolution.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Banner Section - Marketing Tools -->
+    <section class="logo-banner">
+        <div class="logo-banner-content">
+            <p class="logo-banner-label">Automation made simple</p>
+            <p class="logo-banner-subtitle">Build powerful workflows with the tools you already use</p>
+            <div class="logo-marquee">
+                <div class="logo-track">
+                    <!-- First set of logos -->
+                    <div class="logo-item">Google Apps Script</div>
+                    <div class="logo-item">n8n</div>
+                    <div class="logo-item">Zapier</div>
+                    <div class="logo-item">Make</div>
+                    <div class="logo-item">Google Analytics</div>
+                    <div class="logo-item">HubSpot</div>
+                    <div class="logo-item">Semrush</div>
+                    <div class="logo-item">LinkedIn</div>
+                    <div class="logo-item">Airtable</div>
+                    <div class="logo-item">Notion</div>
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="logo-item">Google Apps Script</div>
+                    <div class="logo-item">n8n</div>
+                    <div class="logo-item">Zapier</div>
+                    <div class="logo-item">Make</div>
+                    <div class="logo-item">Google Analytics</div>
+                    <div class="logo-item">HubSpot</div>
+                    <div class="logo-item">Semrush</div>
+                    <div class="logo-item">LinkedIn</div>
+                    <div class="logo-item">Airtable</div>
+                    <div class="logo-item">Notion</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <p class="about-text">Stop wasting time on repetitive marketing tasks. <br>Get free automation templates and daily AI updates.</p>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header-centered">
+                <span class="section-badge">Simple Process</span>
+                <h2 class="section-title-large">How it works</h2>
+                <p class="section-subtitle-large">Three steps to automate your marketing workflow</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card animate-on-scroll" data-delay="0.1">
+                    <div class="step-number">1</div>
+                    <h3>Pick a template</h3>
+                    <p>Browse our library of free automation templates. Filter by tool, difficulty, or task type.</p>
+                </div>
+
+                <div class="step-card animate-on-scroll" data-delay="0.2">
+                    <div class="step-number">2</div>
+                    <h3>Follow the guide</h3>
+                    <p>Step-by-step tutorials with screenshots. Copy the code and customize for your needs.</p>
+                </div>
+
+                <div class="step-card animate-on-scroll" data-delay="0.3">
+                    <div class="step-number">3</div>
+                    <h3>Save time forever</h3>
+                    <p>Set it and forget it. Your automation runs automatically while you focus on strategy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Automations Showcase -->
+    <section class="automations-showcase" id="automations">
+        <div class="container">
+            <div class="section-header-centered">
+                <span class="section-badge">Free Templates</span>
+                <h2 class="section-title-large">Ready-to-use marketing automations</h2>
+                <p class="section-subtitle-large">Copy these workflows and start saving time today. No coding required.</p>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="automation-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="analytics">Analytics</button>
+                <button class="filter-btn" data-filter="social">Social Media</button>
+                <button class="filter-btn" data-filter="email">Email</button>
+                <button class="filter-btn" data-filter="seo">SEO</button>
+                <button class="filter-btn" data-filter="leads">Leads</button>
+            </div>
+
+            <div class="automations-grid">
+                <!-- Automation Card 1 - Analytics -->
+                <article class="automation-card animate-on-scroll" data-delay="0.1" data-category="analytics">
+                    <div class="automation-header">
+                        <div class="automation-icon google">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty beginner">Beginner</span>
+                    </div>
+                    <h3>LinkedIn Analytics Report</h3>
+                    <p>Automatically pull LinkedIn page analytics into Google Sheets every Monday. Format and email to your team.</p>
+                    <div class="automation-meta">
+                        <span class="time-saved">Saves 2 hrs/week</span>
+                        <span class="tool-tag">Google Apps Script</span>
+                    </div>
+                    <a href="blog.html" class="automation-link">Get Template →</a>
+                </article>
+
+                <!-- Automation Card 2 - SEO -->
+                <article class="automation-card animate-on-scroll" data-delay="0.2" data-category="seo">
+                    <div class="automation-header">
+                        <div class="automation-icon n8n">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L2 7v10l10 5 10-5V7z"/>
+                                <path d="M12 12l-7-3.5M12 12l7-3.5M12 12v9" stroke="white" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty intermediate">Intermediate</span>
+                    </div>
+                    <h3>SEO Report Generator</h3>
+                    <p>Connect Semrush API to n8n. Generate weekly SEO performance reports with rankings, backlinks, and traffic data.</p>
+                    <div class="automation-meta">
+                        <span class="time-saved">Saves 4 hrs/week</span>
+                        <span class="tool-tag">n8n + Semrush</span>
+                    </div>
+                    <a href="blog.html" class="automation-link">Get Template →</a>
+                </article>
+
+                <!-- Automation Card 3 - Leads -->
+                <article class="automation-card animate-on-scroll" data-delay="0.3" data-category="leads">
+                    <div class="automation-header">
+                        <div class="automation-icon zapier">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L15 9H22L16 14L19 21L12 16L5 21L8 14L2 9H9L12 2Z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty beginner">Beginner</span>
+                    </div>
+                    <h3>Lead Notification System</h3>
+                    <p>Get instant Slack notifications when leads submit forms. Auto-add to HubSpot and assign to sales reps.</p>
+                    <div class="automation-meta">
+                        <span class="time-saved">Instant alerts</span>
+                        <span class="tool-tag">Zapier + HubSpot</span>
+                    </div>
+                    <a href="blog.html" class="automation-link">Get Template →</a>
+                </article>
+
+                <!-- Automation Card 4 - Analytics -->
+                <article class="automation-card animate-on-scroll" data-delay="0.4" data-category="analytics">
+                    <div class="automation-header">
+                        <div class="automation-icon google">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty beginner">Beginner</span>
+                    </div>
+                    <h3>Google Analytics Dashboard</h3>
+                    <p>Build a live dashboard in Google Sheets. Track traffic, conversions, and top pages. Updates every hour automatically.</p>
+                    <div class="automation-meta">
+                        <span class="time-saved">Saves 3 hrs/week</span>
+                        <span class="tool-tag">Google Apps Script</span>
+                    </div>
+                    <a href="blog.html" class="automation-link">Get Template →</a>
+                </article>
+
+                <!-- Automation Card 5 - Social -->
+                <article class="automation-card animate-on-scroll" data-delay="0.5" data-category="social">
+                    <div class="automation-header">
+                        <div class="automation-icon n8n">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty intermediate">Intermediate</span>
+                    </div>
+                    <h3>Content Distribution Flow</h3>
+                    <p>Publish once, distribute everywhere. Auto-share blog posts to LinkedIn, Twitter, and email newsletter simultaneously.</p>
+                    <div class="automation-meta">
+                        <span class="time-saved">Saves 1 hr/post</span>
+                        <span class="tool-tag">n8n + APIs</span>
+                    </div>
+                    <a href="blog.html" class="automation-link">Get Template →</a>
+                </article>
+
+                <!-- Automation Card 6 - SEO -->
+                <article class="automation-card animate-on-scroll" data-delay="0.6" data-category="seo">
+                    <div class="automation-header">
+                        <div class="automation-icon zapier">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty advanced">Advanced</span>
+                    </div>
+                    <h3>Competitor Monitoring</h3>
+                    <p>Track competitor websites, social media, and SEO rankings. Get weekly digest of changes and opportunities.</p>
+                    <div class="automation-meta">
+                        <span class="time-saved">Continuous monitoring</span>
+                        <span class="tool-tag">Make + Semrush</span>
+                    </div>
+                    <a href="blog.html" class="automation-link">Get Template →</a>
+                </article>
+
+                <!-- Automation Card 7 - Email -->
+                <article class="automation-card animate-on-scroll" data-delay="0.1" data-category="email">
+                    <div class="automation-header">
+                        <div class="automation-icon google">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty beginner">Beginner</span>
+                    </div>
+                    <h3>Weekly Newsletter Automation</h3>
+                    <p>Auto-compile your week's best content into a newsletter. Schedule and send via Mailchimp every Friday.</p>
+                    <div class="automation-meta">
+                        <span class="time-saved">Saves 2 hrs/week</span>
+                        <span class="tool-tag">Zapier + Mailchimp</span>
+                    </div>
+                    <a href="blog.html" class="automation-link">Get Template →</a>
+                </article>
+
+                <!-- Automation Card 8 - Social -->
+                <article class="automation-card animate-on-scroll" data-delay="0.2" data-category="social">
+                    <div class="automation-header">
+                        <div class="automation-icon n8n">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty intermediate">Intermediate</span>
+                    </div>
+                    <h3>Social Media Scheduler</h3>
+                    <p>Schedule posts across all platforms from one Google Sheet. Includes optimal posting times and hashtag suggestions.</p>
+                    <div class="automation-meta">
+                        <span class="time-saved">Saves 5 hrs/week</span>
+                        <span class="tool-tag">n8n + Buffer</span>
+                    </div>
+                    <a href="blog.html" class="automation-link">Get Template →</a>
+                </article>
+
+                <!-- Automation Card 9 - Analytics -->
+                <article class="automation-card animate-on-scroll" data-delay="0.3" data-category="analytics">
+                    <div class="automation-header">
+                        <div class="automation-icon google">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty intermediate">Intermediate</span>
+                    </div>
+                    <h3>Campaign Performance Tracker</h3>
+                    <p>Aggregate data from Facebook Ads, Google Ads, and LinkedIn Ads into one unified dashboard with ROI calculations.</p>
+                    <div class="automation-meta">
+                        <span class="time-saved">Saves 6 hrs/week</span>
+                        <span class="tool-tag">Apps Script + APIs</span>
+                    </div>
+                    <a href="blog.html" class="automation-link">Get Template →</a>
+                </article>
+
+                <!-- Automation Card 10 - Leads -->
+                <article class="automation-card animate-on-scroll" data-delay="0.4" data-category="leads">
+                    <div class="automation-header">
+                        <div class="automation-icon zapier">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21 8V7l-3 2-3-2v1l3 2 3-2zm1-5H2C.9 3 0 3.9 0 5v14c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H2v-1c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1zm8-6h-8V6h8v6z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty advanced">Advanced</span>
+                    </div>
+                    <h3>Lead Scoring Automation</h3>
+                    <p>Automatically score and segment leads based on behavior. Trigger personalized email sequences for hot prospects.</p>
+                    <div class="automation-meta">
+                        <span class="time-saved">24/7 monitoring</span>
+                        <span class="tool-tag">Make + HubSpot</span>
+                    </div>
+                    <a href="blog.html" class="automation-link">Get Template →</a>
+                </article>
+
+                <!-- Automation Card 11 - Email -->
+                <article class="automation-card animate-on-scroll" data-delay="0.5" data-category="email">
+                    <div class="automation-header">
+                        <div class="automation-icon n8n">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty beginner">Beginner</span>
+                    </div>
+                    <h3>Email Engagement Alerts</h3>
+                    <p>Get notified when high-value contacts open emails, click links, or download content. Perfect for sales follow-up.</p>
+                    <div class="automation-meta">
+                        <span class="time-saved">Real-time alerts</span>
+                        <span class="tool-tag">n8n + Gmail</span>
+                    </div>
+                    <a href="blog.html" class="automation-link">Get Template →</a>
+                </article>
+
+                <!-- Automation Card 12 - SEO -->
+                <article class="automation-card animate-on-scroll" data-delay="0.6" data-category="seo">
+                    <div class="automation-header">
+                        <div class="automation-icon google">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty intermediate">Intermediate</span>
+                    </div>
+                    <h3>Keyword Rank Tracker</h3>
+                    <p>Monitor your keyword rankings daily. Get alerts when you rank on page 1 or drop out of top 10.</p>
+                    <div class="automation-meta">
+                        <span class="time-saved">Daily tracking</span>
+                        <span class="tool-tag">Apps Script + Semrush</span>
+                    </div>
+                    <a href="blog.html" class="automation-link">Get Template →</a>
+                </article>
+            </div>
+
+            <div class="view-all-section">
+                <a href="blog.html" class="view-all-button">View All Automations</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI News & Updates Section -->
+    <section class="ai-news-section">
+        <div class="container">
+            <div class="news-header">
+                <div class="news-header-left">
+                    <span class="section-badge dark">Daily Updates</span>
+                    <h2 class="section-title-large white">AI & Marketing News</h2>
+                    <p class="section-subtitle-large white-muted">Stay ahead with daily updates on AI tools, marketing tech, and industry changes.</p>
+                </div>
+                <a href="blog.html" class="news-archive-link">
+                    View Archive
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="news-grid">
+                <!-- News Item 1 -->
+                <article class="news-card animate-on-scroll" data-delay="0.1">
+                    <div class="news-meta">
+                        <span class="news-category ai">AI Tools</span>
+                        <span class="news-date">Today</span>
+                    </div>
+                    <h3>ChatGPT launches new API for marketing automation</h3>
+                    <p>OpenAI released advanced function calling features that make it easier to integrate GPT-4 with marketing workflows.</p>
+                    <a href="blog.html" class="news-link">Read more →</a>
+                </article>
+
+                <!-- News Item 2 -->
+                <article class="news-card animate-on-scroll" data-delay="0.2">
+                    <div class="news-meta">
+                        <span class="news-category tools">Marketing Tools</span>
+                        <span class="news-date">Yesterday</span>
+                    </div>
+                    <h3>HubSpot integrates with Google's Gemini AI</h3>
+                    <p>New partnership brings AI-powered content generation and customer insights directly into HubSpot's platform.</p>
+                    <a href="blog.html" class="news-link">Read more →</a>
+                </article>
+
+                <!-- News Item 3 -->
+                <article class="news-card animate-on-scroll" data-delay="0.3">
+                    <div class="news-meta">
+                        <span class="news-category automation">Automation</span>
+                        <span class="news-date">2 days ago</span>
+                    </div>
+                    <h3>n8n releases 400+ new integrations</h3>
+                    <p>Popular automation platform expands its connector library with major additions including TikTok Ads and Reddit API.</p>
+                    <a href="blog.html" class="news-link">Read more →</a>
+                </article>
+
+                <!-- News Item 4 -->
+                <article class="news-card animate-on-scroll" data-delay="0.4">
+                    <div class="news-meta">
+                        <span class="news-category seo">SEO</span>
+                        <span class="news-date">3 days ago</span>
+                    </div>
+                    <h3>Google Search updates algorithm for AI content</h3>
+                    <p>New guidelines help marketers understand how to use AI-generated content without penalties. Quality signals refined.</p>
+                    <a href="blog.html" class="news-link">Read more →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Tutorial Posts -->
+    <section class="latest-posts">
+        <div class="container">
+            <h2 class="animate-on-scroll" data-delay="0.2">Latest Tutorials</h2>
+            <div class="posts-grid">
+                <article class="post-card animate-on-scroll" data-delay="0.3">
+                    <div class="post-image">
+                        <img src="assets/images/2.png" alt="n8n automation">
+                    </div>
+                    <div class="post-content">
+                        <h3>Getting Started with n8n for Marketers</h3>
+                        <p>Build your first marketing automation workflow in 15 minutes. No coding required.</p>
+                        <a href="blog.html" class="read-more">Read Tutorial →</a>
+                    </div>
+                </article>
+                <article class="post-card animate-on-scroll" data-delay="0.4">
+                    <div class="post-image">
+                        <img src="assets/images/3.png" alt="Email automation">
+                    </div>
+                    <div class="post-content">
+                        <h3>Google Apps Script Email Reports</h3>
+                        <p>Send automated marketing reports from Google Sheets to your team every Monday.</p>
+                        <a href="blog.html" class="read-more">Read Tutorial →</a>
+                    </div>
+                </article>
+                <article class="post-card animate-on-scroll" data-delay="0.5">
+                    <div class="post-image">
+                        <img src="assets/images/4.png" alt="Automation tasks">
+                    </div>
+                    <div class="post-content">
+                        <h3>5 Marketing Tasks to Automate Today</h3>
+                        <p>Low-hanging fruit that will save you 10+ hours per week. Start here.</p>
+                        <a href="blog.html" class="read-more">Read Tutorial →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="marketer-testimonials">
+        <div class="container">
+            <div class="section-header-centered">
+                <span class="section-badge">Success Stories</span>
+                <h2 class="section-title-large">Marketers who automated their workflow</h2>
+            </div>
+
+            <div class="testimonials-grid-marketing">
+                <div class="testimonial-card-marketing animate-on-scroll" data-delay="0.1">
+                    <div class="quote-mark">"</div>
+                    <p class="testimonial-text">This LinkedIn report automation saved me 2 hours every single week. I just wake up Monday morning and the report is in my inbox. Game changer.</p>
+                    <div class="testimonial-author-marketing">
+                        <div class="author-avatar-marketing">SM</div>
+                        <div>
+                            <h4>Sarah Miller</h4>
+                            <p>Marketing Manager at TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card-marketing animate-on-scroll" data-delay="0.2">
+                    <div class="quote-mark">"</div>
+                    <p class="testimonial-text">I automated our entire SEO reporting process with the n8n template. My boss thinks I'm a wizard. Worth every minute spent setting it up.</p>
+                    <div class="testimonial-author-marketing">
+                        <div class="author-avatar-marketing">JC</div>
+                        <div>
+                            <h4>James Chen</h4>
+                            <p>SEO Specialist</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card-marketing animate-on-scroll" data-delay="0.3">
+                    <div class="quote-mark">"</div>
+                    <p class="testimonial-text">As a solo marketer, these automations are my secret weapon. I'm competing with teams of 5 people and winning. The tutorials are so easy to follow.</p>
+                    <div class="testimonial-author-marketing">
+                        <div class="author-avatar-marketing">RP</div>
+                        <div>
+                            <h4>Rachel Park</h4>
+                            <p>Freelance Marketing Consultant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section-marketing">
+        <div class="container">
+            <div class="section-header-centered">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title-large">Common questions</h2>
+            </div>
+
+            <div class="faq-grid-marketing">
+                <div class="faq-item-marketing animate-on-scroll" data-delay="0.1">
+                    <h3>Do I need coding experience?</h3>
+                    <p>No! Our tutorials are designed for marketers, not developers. We provide step-by-step instructions with screenshots. If you can copy and paste, you can build these automations.</p>
+                </div>
+
+                <div class="faq-item-marketing animate-on-scroll" data-delay="0.2">
+                    <h3>Are these really free?</h3>
+                    <p>Yes, 100% free forever. All templates, tutorials, and daily AI news are completely free. No hidden fees, no premium tiers, no credit card required.</p>
+                </div>
+
+                <div class="faq-item-marketing animate-on-scroll" data-delay="0.3">
+                    <h3>What tools do I need?</h3>
+                    <p>Most automations use free tools like Google Apps Script, or freemium tools like n8n, Zapier, and Make. We always mention the tools required at the top of each tutorial.</p>
+                </div>
+
+                <div class="faq-item-marketing animate-on-scroll" data-delay="0.4">
+                    <h3>How long does setup take?</h3>
+                    <p>Beginner automations take 15-30 minutes. Intermediate ones take 1-2 hours. Advanced automations might take 3-4 hours, but they save you 10x that time every month.</p>
+                </div>
+
+                <div class="faq-item-marketing animate-on-scroll" data-delay="0.5">
+                    <h3>Can I customize the templates?</h3>
+                    <p>Absolutely! Our templates are starting points. We show you how to customize them for your specific needs, data sources, and reporting preferences.</p>
+                </div>
+
+                <div class="faq-item-marketing animate-on-scroll" data-delay="0.6">
+                    <h3>Do you offer support?</h3>
+                    <p>Each tutorial has detailed troubleshooting sections. For specific questions, reach out via email or LinkedIn. We respond within 24-48 hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item animate-on-scroll" data-delay="0.1">
+                    <h3 class="stat-number">50+</h3>
+                    <p class="stat-label">Free Automations</p>
+                </div>
+                <div class="stat-item animate-on-scroll" data-delay="0.2">
+                    <h3 class="stat-number">10,000+</h3>
+                    <p class="stat-label">Hours Saved</p>
+                </div>
+                <div class="stat-item animate-on-scroll" data-delay="0.3">
+                    <h3 class="stat-number">Daily</h3>
+                    <p class="stat-label">AI Updates</p>
+                </div>
+                <div class="stat-item animate-on-scroll" data-delay="0.4">
+                    <h3 class="stat-number">100%</h3>
+                    <p class="stat-label">Free Forever</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Get free automations + daily AI news</h2>
+            <p>Join marketers who are automating their workflow and staying ahead</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="cta-button">Subscribe Free</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Stupid Humans Tech</h3>
+                    <p class="footer-tagline">Marketing automation, simplified</p>
+                </div>
+                <div class="footer-contact">
+                    <p>Contact me</p>
+                    <div class="contact-links">
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                            LinkedIn
+                        </a>
+                        <a href="mailto:your.email@gmail.com">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.91L12 10.09l9.455-6.269h.909c.904 0 1.636.732 1.636 1.636z"/>
+                            </svg>
+                            Gmail
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
