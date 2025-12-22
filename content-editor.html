@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Editor | Stupid Humans Tech</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="content-editor.css">
+    <!-- Quill Rich Text Editor -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Editor Header -->
+    <header class="editor-header">
+        <div class="editor-header-left">
+            <button class="btn-back" onclick="goBack()">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                Back to Dashboard
+            </button>
+            <span class="editor-status" id="saveStatus">All changes saved</span>
+        </div>
+        <div class="editor-header-right">
+            <button class="btn-secondary" onclick="saveDraft()">Save Draft</button>
+            <button class="btn-secondary" onclick="togglePreview()">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                </svg>
+                Preview
+            </button>
+            <button class="btn-primary" onclick="publishContent()">Publish</button>
+        </div>
+    </header>
+
+    <!-- Main Editor Layout -->
+    <div class="editor-layout">
+        <!-- Left Panel - Content Editor -->
+        <div class="editor-main" id="editorMain">
+            <div class="editor-container">
+                <!-- Title -->
+                <div class="title-section">
+                    <input
+                        type="text"
+                        id="postTitle"
+                        class="title-input"
+                        placeholder="Enter your title here..."
+                        oninput="updatePreview(); autoSave()">
+                    <div class="title-info">
+                        <span class="char-count" id="titleCharCount">0/60 characters</span>
+                        <span class="seo-indicator" id="titleSEO">❌ Too short</span>
+                    </div>
+                </div>
+
+                <!-- Featured Image -->
+                <div class="featured-image-section">
+                    <div id="imageUploadArea" class="image-upload-box" onclick="document.getElementById('imageInput').click()">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                        </svg>
+                        <p>Click to upload featured image</p>
+                        <span class="image-hint">Recommended: 1200 x 675px</span>
+                    </div>
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                    <div id="imagePreviewContainer" class="image-preview-container" style="display: none;">
+                        <img id="imagePreview" src="" alt="Featured image">
+                        <button class="btn-remove-image" onclick="removeImage()">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                            Remove
+                        </button>
+                    </div>
+                    <input type="text" id="imageAlt" class="image-alt-input" placeholder="Image alt text (for SEO and accessibility)" oninput="updatePreview(); autoSave()">
+                </div>
+
+                <!-- Excerpt -->
+                <div class="excerpt-section">
+                    <label for="postExcerpt">Excerpt</label>
+                    <textarea
+                        id="postExcerpt"
+                        class="excerpt-input"
+                        rows="3"
+                        placeholder="Brief description of your post (140-160 characters for SEO)"
+                        oninput="updatePreview(); autoSave()"></textarea>
+                    <div class="excerpt-info">
+                        <span class="char-count" id="excerptCharCount">0/160 characters</span>
+                        <span class="seo-indicator" id="excerptSEO">❌ Too short</span>
+                    </div>
+                </div>
+
+                <!-- Rich Text Editor -->
+                <div class="content-section">
+                    <label>Content</label>
+                    <div id="editor" class="quill-editor"></div>
+                    <div class="content-info">
+                        <span class="word-count" id="wordCount">0 words</span>
+                        <span class="read-time" id="readTime">0 min read</span>
+                    </div>
+                </div>
+
+                <!-- Tags -->
+                <div class="tags-section">
+                    <label for="postTags">Tags</label>
+                    <input
+                        type="text"
+                        id="postTags"
+                        class="tags-input"
+                        placeholder="Add tags separated by commas (e.g., automation, n8n, tutorial)"
+                        oninput="autoSave()">
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Settings & Preview Toggle -->
+        <div class="editor-sidebar" id="editorSidebar">
+            <!-- Settings Panel -->
+            <div class="settings-panel">
+                <h3>Post Settings</h3>
+
+                <!-- Category -->
+                <div class="setting-group">
+                    <label for="postCategory">Category</label>
+                    <select id="postCategory" class="setting-select" onchange="autoSave()">
+                        <option value="">Select category</option>
+                        <option value="tutorials">Tutorials</option>
+                        <option value="case-studies">Case Studies</option>
+                        <option value="tools">Tool Reviews</option>
+                        <option value="analytics">Analytics</option>
+                        <option value="social">Social Media</option>
+                        <option value="email">Email</option>
+                        <option value="seo">SEO</option>
+                        <option value="leads">Leads</option>
+                    </select>
+                </div>
+
+                <!-- Difficulty -->
+                <div class="setting-group">
+                    <label for="postDifficulty">Difficulty</label>
+                    <select id="postDifficulty" class="setting-select" onchange="autoSave()">
+                        <option value="">Select difficulty</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+
+                <!-- Author -->
+                <div class="setting-group">
+                    <label for="postAuthor">Author</label>
+                    <input type="text" id="postAuthor" class="setting-input" placeholder="Author name" oninput="autoSave()">
+                </div>
+
+                <!-- Read Time -->
+                <div class="setting-group">
+                    <label for="postReadTime">Read Time (minutes)</label>
+                    <input type="number" id="postReadTime" class="setting-input" placeholder="Auto-calculated" min="1" oninput="autoSave()">
+                </div>
+
+                <!-- Publishing -->
+                <div class="setting-group">
+                    <h4>Publishing Options</h4>
+                    <label class="setting-radio">
+                        <input type="radio" name="publishOption" value="immediate" checked onchange="toggleSchedule()">
+                        <span>Publish immediately</span>
+                    </label>
+                    <label class="setting-radio">
+                        <input type="radio" name="publishOption" value="scheduled" onchange="toggleSchedule()">
+                        <span>Schedule for later</span>
+                    </label>
+                    <div id="scheduleOptions" style="display: none; margin-top: 1rem;">
+                        <input type="datetime-local" id="publishDate" class="setting-input" onchange="autoSave()">
+                    </div>
+                </div>
+
+                <!-- SEO Section -->
+                <div class="setting-group seo-section">
+                    <h4>SEO Score</h4>
+                    <div class="seo-score-ring">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#e0e0e0" stroke-width="8"></circle>
+                            <circle id="seoCircle" cx="50" cy="50" r="45" fill="none" stroke="#667eea" stroke-width="8"
+                                    stroke-dasharray="283" stroke-dashoffset="283" transform="rotate(-90 50 50)"></circle>
+                        </svg>
+                        <div class="seo-score-text">
+                            <span id="seoScore">0</span>
+                            <small>/100</small>
+                        </div>
+                    </div>
+                    <div class="seo-checklist">
+                        <div class="seo-check" id="checkTitle">
+                            <span class="check-icon">⚪</span>
+                            <span>Title length (50-60 chars)</span>
+                        </div>
+                        <div class="seo-check" id="checkExcerpt">
+                            <span class="check-icon">⚪</span>
+                            <span>Meta description (140-160 chars)</span>
+                        </div>
+                        <div class="seo-check" id="checkImage">
+                            <span class="check-icon">⚪</span>
+                            <span>Featured image with alt text</span>
+                        </div>
+                        <div class="seo-check" id="checkContent">
+                            <span class="check-icon">⚪</span>
+                            <span>Content length (300+ words)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced SEO -->
+                <div class="setting-group">
+                    <h4>Advanced SEO</h4>
+                    <label for="metaTitle">Meta Title</label>
+                    <input type="text" id="metaTitle" class="setting-input" placeholder="Leave blank to use post title" oninput="autoSave()">
+
+                    <label for="urlSlug" style="margin-top: 1rem;">URL Slug</label>
+                    <input type="text" id="urlSlug" class="setting-input" placeholder="auto-generated-from-title" oninput="autoSave()">
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Panel (Hidden by default) -->
+        <div class="preview-panel" id="previewPanel" style="display: none;">
+            <div class="preview-header">
+                <h3>Preview</h3>
+                <div class="preview-modes">
+                    <button class="preview-mode-btn active" data-mode="desktop" onclick="setPreviewMode('desktop')">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H3V4h18v12z"/>
+                        </svg>
+                    </button>
+                    <button class="preview-mode-btn" data-mode="mobile" onclick="setPreviewMode('mobile')">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="preview-content" id="previewContent">
+                <div class="preview-article">
+                    <h1 id="previewTitle">Your title will appear here</h1>
+                    <div class="preview-meta">
+                        <span id="previewAuthor">Author</span>
+                        <span>•</span>
+                        <span id="previewDate">Dec 22, 2025</span>
+                        <span>•</span>
+                        <span id="previewReadTime">5 min read</span>
+                    </div>
+                    <img id="previewImage" src="" alt="" style="display: none;">
+                    <div id="previewExcerpt" class="preview-excerpt"></div>
+                    <div id="previewBody" class="preview-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Inputs -->
+    <input type="hidden" id="contentType" value="blog">
+    <input type="hidden" id="editId" value="">
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+    <!-- Quill Rich Text Editor -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <!-- Scripts -->
+    <script src="firebase-config.js"></script>
+    <script src="content-editor.js"></script>
+</body>
+</html>
