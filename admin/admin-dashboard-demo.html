@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Dashboard Demo | Stupid Humans Tech</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
+    <style>
+        .demo-banner {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        DEMO MODE - No Firebase required. Click "View Dashboard" to see the interface.
+    </div>
+
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="dashboard-header-content">
+            <div class="dashboard-brand">
+                <h1>Stupid Humans Tech</h1>
+                <span class="dashboard-subtitle">Content Management Dashboard</span>
+            </div>
+            <div class="dashboard-user">
+                <span id="userEmail" class="user-email">demo@stupidhuman.tech</span>
+                <button id="logoutBtn" class="btn-logout">Logout (Demo)</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Dashboard Demo</h2>
+                <p>Preview the admin dashboard interface</p>
+            </div>
+            <div style="text-align: center; padding: 2rem 0;">
+                <p style="margin-bottom: 1.5rem; color: #718096;">
+                    This is a demo version. Click below to view the dashboard interface.
+                </p>
+                <button onclick="showDashboardDemo()" class="btn-primary" style="margin: 0 auto;">
+                    View Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboardContent" class="dashboard-container" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <nav class="dashboard-nav">
+                <a href="#" class="nav-item active" onclick="showSectionDemo('overview'); return false;">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                    </svg>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSectionDemo('blog'); return false;">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    <span>Blog Posts</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSectionDemo('news'); return false;">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+                    </svg>
+                    <span>News Articles</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSectionDemo('settings'); return false;">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                    </svg>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-main">
+            <!-- Overview Section -->
+            <section id="overviewSection" class="dashboard-section active">
+                <div class="section-header">
+                    <h2>Content Overview</h2>
+                    <p>Manage all your blog posts and news articles</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blog">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>12</h3>
+                            <p>Blog Posts</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon news">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>8</h3>
+                            <p>News Articles</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon published">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>15</h3>
+                            <p>Published</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon draft">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>5</h3>
+                            <p>Drafts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="btn-action" onclick="showEditorDemo('blog')">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                            </svg>
+                            Create Blog Post
+                        </button>
+                        <button class="btn-action" onclick="showEditorDemo('news')">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                            </svg>
+                            Create News Article
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog Section -->
+            <section id="blogSection" class="dashboard-section">
+                <div class="section-header">
+                    <div>
+                        <h2>Blog Posts</h2>
+                        <p>Manage your automation tutorials and blog content</p>
+                    </div>
+                    <button class="btn-primary" onclick="showEditorDemo('blog')">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
+                        New Blog Post
+                    </button>
+                </div>
+
+                <div class="content-list">
+                    <div class="content-item">
+                        <div class="content-info">
+                            <h3 class="content-title">Getting Started with n8n for Marketers</h3>
+                            <div class="content-meta">
+                                <span class="meta-badge published">published</span>
+                                <span class="meta-badge">tutorials</span>
+                                <span class="meta-badge">beginner</span>
+                                <span class="meta-badge">Created: Dec 20, 2025</span>
+                            </div>
+                        </div>
+                        <div class="content-actions">
+                            <button class="btn-icon" onclick="showEditorDemo('blog')" title="Edit">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                                </svg>
+                            </button>
+                            <button class="btn-icon" title="Unpublish">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </button>
+                            <button class="btn-icon delete" title="Delete">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="content-item">
+                        <div class="content-info">
+                            <h3 class="content-title">LinkedIn Analytics Automation Tutorial</h3>
+                            <div class="content-meta">
+                                <span class="meta-badge published">published</span>
+                                <span class="meta-badge">analytics</span>
+                                <span class="meta-badge">intermediate</span>
+                                <span class="meta-badge">Created: Dec 18, 2025</span>
+                            </div>
+                        </div>
+                        <div class="content-actions">
+                            <button class="btn-icon" onclick="showEditorDemo('blog')" title="Edit">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                                </svg>
+                            </button>
+                            <button class="btn-icon" title="Unpublish">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </button>
+                            <button class="btn-icon delete" title="Delete">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="content-item">
+                        <div class="content-info">
+                            <h3 class="content-title">Advanced SEO Automation with Make</h3>
+                            <div class="content-meta">
+                                <span class="meta-badge draft">draft</span>
+                                <span class="meta-badge">seo</span>
+                                <span class="meta-badge">advanced</span>
+                                <span class="meta-badge">Created: Dec 15, 2025</span>
+                            </div>
+                        </div>
+                        <div class="content-actions">
+                            <button class="btn-icon" onclick="showEditorDemo('blog')" title="Edit">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                                </svg>
+                            </button>
+                            <button class="btn-icon" title="Publish">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </button>
+                            <button class="btn-icon delete" title="Delete">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- News Section -->
+            <section id="newsSection" class="dashboard-section">
+                <div class="section-header">
+                    <div>
+                        <h2>News Articles</h2>
+                        <p>Manage AI and marketing news updates</p>
+                    </div>
+                    <button class="btn-primary" onclick="showEditorDemo('news')">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
+                        New News Article
+                    </button>
+                </div>
+
+                <div class="content-list">
+                    <div class="content-item">
+                        <div class="content-info">
+                            <h3 class="content-title">ChatGPT Launches Marketing Automation API</h3>
+                            <div class="content-meta">
+                                <span class="meta-badge published">published</span>
+                                <span class="meta-badge">ai-tools</span>
+                                <span class="meta-badge">Created: Today</span>
+                            </div>
+                        </div>
+                        <div class="content-actions">
+                            <button class="btn-icon" onclick="showEditorDemo('news')" title="Edit">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                                </svg>
+                            </button>
+                            <button class="btn-icon" title="Unpublish">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </button>
+                            <button class="btn-icon delete" title="Delete">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="content-item">
+                        <div class="content-info">
+                            <h3 class="content-title">HubSpot Integrates with Google Gemini AI</h3>
+                            <div class="content-meta">
+                                <span class="meta-badge published">published</span>
+                                <span class="meta-badge">marketing-tech</span>
+                                <span class="meta-badge">Created: Yesterday</span>
+                            </div>
+                        </div>
+                        <div class="content-actions">
+                            <button class="btn-icon" onclick="showEditorDemo('news')" title="Edit">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                                </svg>
+                            </button>
+                            <button class="btn-icon" title="Unpublish">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </button>
+                            <button class="btn-icon delete" title="Delete">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settingsSection" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Settings</h2>
+                    <p>Configure your dashboard and Firebase settings</p>
+                </div>
+
+                <div class="settings-container">
+                    <div class="settings-card">
+                        <h3>Firebase Configuration</h3>
+                        <p class="settings-description">Your Firebase project settings for content storage</p>
+                        <div class="settings-status">
+                            <div class="status-indicator connected"></div>
+                            <span>Demo Mode - No Firebase Required</span>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Account Information</h3>
+                        <p class="settings-description">Manage your admin account</p>
+                        <div class="settings-info">
+                            <label>Email:</label>
+                            <span>demo@stupidhuman.tech</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Blog/News Editor Modal -->
+    <div id="editorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="editorTitle">Create New Post</h2>
+                <button class="modal-close" onclick="closeEditorDemo()">&times;</button>
+            </div>
+            <form id="contentForm" class="content-form" onsubmit="return false;">
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="postTitle">Title *</label>
+                        <input type="text" id="postTitle" placeholder="Enter post title" value="Getting Started with Marketing Automation">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="postCategory">Category *</label>
+                        <select id="postCategory">
+                            <option value="tutorials" selected>Tutorials</option>
+                            <option value="case-studies">Case Studies</option>
+                            <option value="tools">Tool Reviews</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="postDifficulty">Difficulty</label>
+                        <select id="postDifficulty">
+                            <option value="beginner" selected>Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="postAuthor">Author</label>
+                        <input type="text" id="postAuthor" placeholder="Author name" value="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="postReadTime">Read Time (minutes)</label>
+                        <input type="number" id="postReadTime" placeholder="15" value="15">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="postExcerpt">Excerpt *</label>
+                    <textarea id="postExcerpt" rows="3" placeholder="Brief description of the content...">Learn the fundamentals of marketing automation and how to save hours every week with simple workflows.</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="postContent">Content *</label>
+                    <textarea id="postContent" rows="15" placeholder="Write your content here... (Supports Markdown)">## Introduction
+
+Marketing automation doesn't have to be complicated. In this tutorial, you'll learn how to:
+
+- Set up your first automation workflow
+- Connect your favorite tools
+- Save hours of manual work
+
+## Step 1: Choose Your Tool
+
+Start with a beginner-friendly platform like n8n or Zapier...
+
+## Step 2: Build Your First Workflow
+
+Here's a simple workflow to get started...</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="postImage">Featured Image URL</label>
+                    <input type="url" id="postImage" placeholder="https://example.com/image.jpg" value="assets/images/2.png">
+                </div>
+
+                <div class="form-group">
+                    <label for="postTags">Tags (comma separated)</label>
+                    <input type="text" id="postTags" placeholder="automation, n8n, tutorial" value="automation, marketing, beginner, tutorial">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeEditorDemo()">Cancel</button>
+                    <button type="button" class="btn-outline" onclick="alert('In the real dashboard, this would save as draft')">Save as Draft</button>
+                    <button type="button" class="btn-primary" onclick="alert('In the real dashboard, this would publish your content to Firebase!')">Publish</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showDashboardDemo() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('dashboardContent').style.display = 'flex';
+        }
+
+        function showSectionDemo(section) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.nav-item').classList.add('active');
+
+            document.querySelectorAll('.dashboard-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            document.getElementById(section + 'Section').classList.add('active');
+        }
+
+        function showEditorDemo(type) {
+            if (type === 'blog') {
+                document.getElementById('editorTitle').textContent = 'Create New Blog Post';
+                document.getElementById('postCategory').innerHTML = `
+                    <option value="tutorials" selected>Tutorials</option>
+                    <option value="case-studies">Case Studies</option>
+                    <option value="tools">Tool Reviews</option>
+                    <option value="analytics">Analytics</option>
+                `;
+            } else {
+                document.getElementById('editorTitle').textContent = 'Create New News Article';
+                document.getElementById('postCategory').innerHTML = `
+                    <option value="ai-tools" selected>AI Tools</option>
+                    <option value="marketing-tech">Marketing Tech</option>
+                    <option value="platform-updates">Platform Updates</option>
+                    <option value="industry">Industry Trends</option>
+                `;
+            }
+            document.getElementById('editorModal').classList.add('show');
+        }
+
+        function closeEditorDemo() {
+            document.getElementById('editorModal').classList.remove('show');
+        }
+
+        document.getElementById('editorModal').addEventListener('click', (e) => {
+            if (e.target.id === 'editorModal') {
+                closeEditorDemo();
+            }
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            document.getElementById('dashboardContent').style.display = 'none';
+            document.getElementById('loginScreen').style.display = 'flex';
+        });
+    </script>
+</body>
+</html>

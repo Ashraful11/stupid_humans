@@ -1,0 +1,44 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/*.md",
+      "docs/**",
+      "index-old-backup.html",
+      "index-marketing.html"
+    ],
+    "rewrites": [
+      {
+        "source": "/admin",
+        "destination": "/admin/admin-dashboard-enhanced.html"
+      },
+      {
+        "source": "/editor",
+        "destination": "/admin/content-editor.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600"
+          }
+        ]
+      },
+      {
+        "source": "admin/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "private, no-cache"
+          }
+        ]
+      }
+    ]
+  }
+}

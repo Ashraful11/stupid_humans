@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Test</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f7fafc;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a202c;
+            margin-top: 0;
+        }
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        .success {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+        .error {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #fc8181;
+        }
+        .info {
+            background: #bee3f8;
+            color: #2c5282;
+            border: 1px solid #90cdf4;
+        }
+        pre {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+        .step h3 {
+            margin-top: 0;
+            color: #2d3748;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        button:hover {
+            background: #5a67d8;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Firebase Connection Test</h1>
+
+        <div id="configStatus" class="status info">
+            Checking Firebase configuration...
+        </div>
+
+        <div class="step">
+            <h3>Your Firebase Config:</h3>
+            <pre id="configDisplay">Loading...</pre>
+        </div>
+
+        <div class="step">
+            <h3>Test Authentication:</h3>
+            <input type="email" id="testEmail" placeholder="Email" value="test@example.com">
+            <input type="password" id="testPassword" placeholder="Password" value="test123456">
+            <button onclick="testAuth()">Test Login</button>
+            <div id="authStatus"></div>
+        </div>
+
+        <div class="step">
+            <h3>Test Firestore:</h3>
+            <button onclick="testFirestore()">Test Database Write</button>
+            <div id="firestoreStatus"></div>
+        </div>
+
+        <div class="step">
+            <h3>Quick Fix Steps:</h3>
+            <ol>
+                <li>Go to <a href="https://console.firebase.google.com/project/stupid-humans/settings/general" target="_blank">Firebase Console</a></li>
+                <li>Scroll down to "Your apps"</li>
+                <li>If no web app exists, click "Add app" → Web icon</li>
+                <li>Copy the NEW config and update firebase-config.js</li>
+                <li>Make sure Authentication is enabled (Email/Password)</li>
+                <li>Make sure Firestore Database is created</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDfVW5z7PKskcKWOTXdLJQheh7ymbMJBHU",
+            authDomain: "stupid-humans.firebaseapp.com",
+            projectId: "stupid-humans",
+            storageBucket: "stupid-humans.firebasestorage.app",
+            messagingSenderId: "1040080870388",
+            appId: "1:1040080870388:web:fb226e8d6fe6cfbc21f7a1",
+            measurementId: "G-HCWDB5GGCB"
+        };
+
+        // Display config
+        document.getElementById('configDisplay').textContent = JSON.stringify(firebaseConfig, null, 2);
+
+        // Initialize Firebase
+        let app, auth, db;
+        let initError = null;
+
+        try {
+            app = firebase.initializeApp(firebaseConfig);
+            auth = firebase.auth();
+            db = firebase.firestore();
+
+            document.getElementById('configStatus').className = 'status success';
+            document.getElementById('configStatus').textContent = '✅ Firebase initialized successfully! Config is valid.';
+        } catch (error) {
+            initError = error;
+            document.getElementById('configStatus').className = 'status error';
+            document.getElementById('configStatus').innerHTML = `
+                ❌ Firebase initialization failed:<br>
+                <strong>${error.code}</strong>: ${error.message}
+            `;
+        }
+
+        // Test authentication
+        async function testAuth() {
+            const email = document.getElementById('testEmail').value;
+            const password = document.getElementById('testPassword').value;
+            const statusDiv = document.getElementById('authStatus');
+
+            statusDiv.className = 'status info';
+            statusDiv.textContent = 'Testing authentication...';
+
+            try {
+                // Try to create user (will fail if exists, that's ok)
+                try {
+                    await auth.createUserWithEmailAndPassword(email, password);
+                    statusDiv.className = 'status success';
+                    statusDiv.textContent = '✅ User created successfully! Authentication is working.';
+                } catch (createError) {
+                    if (createError.code === 'auth/email-already-in-use') {
+                        // Try to login instead
+                        await auth.signInWithEmailAndPassword(email, password);
+                        statusDiv.className = 'status success';
+                        statusDiv.textContent = '✅ Login successful! Authentication is working.';
+                    } else {
+                        throw createError;
+                    }
+                }
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `
+                    ❌ Authentication error:<br>
+                    <strong>${error.code}</strong>: ${error.message}<br><br>
+                    <strong>Common fixes:</strong><br>
+                    • Go to Firebase Console → Authentication → Get Started<br>
+                    • Enable Email/Password sign-in method<br>
+                    • Make sure the API key has correct permissions
+                `;
+            }
+        }
+
+        // Test Firestore
+        async function testFirestore() {
+            const statusDiv = document.getElementById('firestoreStatus');
+
+            statusDiv.className = 'status info';
+            statusDiv.textContent = 'Testing Firestore database...';
+
+            try {
+                // Try to write a test document
+                await db.collection('_test').add({
+                    message: 'Test write',
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                statusDiv.className = 'status success';
+                statusDiv.textContent = '✅ Database write successful! Firestore is working.';
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `
+                    ❌ Firestore error:<br>
+                    <strong>${error.code}</strong>: ${error.message}<br><br>
+                    <strong>Common fixes:</strong><br>
+                    • Go to Firebase Console → Firestore Database<br>
+                    • Click "Create database" if not created<br>
+                    • Start in test mode<br>
+                    • Check security rules allow writes
+                `;
+            }
+        }
+
+        // Auto-test on load
+        setTimeout(() => {
+            if (!initError) {
+                console.log('✅ Firebase initialized successfully');
+            }
+        }, 500);
+    </script>
+</body>
+</html>
