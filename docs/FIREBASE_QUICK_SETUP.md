@@ -33,13 +33,13 @@ Open `firebase-config.js` and replace:
 ```javascript
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDfVW5z7PKskcKWOTXdLJQheh7ymbMJBHU",
+  apiKey: "YOUR_ACTUAL_API_KEY_HERE",
   authDomain: "stupid-humans.firebaseapp.com",
   projectId: "stupid-humans",
   storageBucket: "stupid-humans.firebasestorage.app",
-  messagingSenderId: "1040080870388",
-  appId: "1:1040080870388:web:fb226e8d6fe6cfbc21f7a1",
-  measurementId: "G-HCWDB5GGCB"
+  messagingSenderId: "YOUR_SENDER_ID_HERE",
+  appId: "1:YOUR_SENDER_ID_HERE:web:fb226e8d6fe6cfbc21f7a1",
+  measurementId: "YOUR_MEASUREMENT_ID_HERE"
 };
 ```
 

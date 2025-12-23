@@ -1,0 +1,60 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+             firestore.get(/databases/(default)/documents/admins/$(request.auth.uid)).data != null;
+    }
+
+    // Validate file size (10MB max)
+    function isValidSize() {
+      return request.resource.size < 10 * 1024 * 1024;
+    }
+
+    // Validate image file types
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+
+    // Validate video file types
+    function isVideo() {
+      return request.resource.contentType.matches('video/.*');
+    }
+
+    // Public assets (images, videos) - Read by all, write by admin only
+    match /assets/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidSize() && (isImage() || isVideo());
+    }
+
+    // Blog post images - Admin only
+    match /blog-images/{imageId} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidSize() && isImage();
+    }
+
+    // News images - Admin only
+    match /news-images/{imageId} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidSize() && isImage();
+    }
+
+    // User uploads - Users can only access their own files
+    match /user-uploads/{userId}/{allPaths=**} {
+      allow read, write: if isSignedIn() &&
+                            request.auth.uid == userId &&
+                            isValidSize();
+    }
+
+    // Deny all other access by default
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
